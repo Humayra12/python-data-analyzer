@@ -1,3 +1,23 @@
+def analyze_numbers(numbers):
+    # Return count, min, max, sum, average in a dictionary
+    if not numbers:
+        return {
+            "count": 0,
+            "min": None,
+            "max": None,
+            "sum": 0,
+            "average": None
+        }
+    
+    return {
+        "count": len(numbers),
+        "min": min(numbers),
+        "max": max(numbers),
+        "sum": sum(numbers),
+        "average": sum(numbers) / len(numbers)
+    }
+
+
 def main():
     # Ask the user how many numbers to enter
     while True:
@@ -26,6 +46,16 @@ def main():
     
     # Print the list
     print("\nYour numbers:", numbers)
+
+
+    # Analyze the numbers
+    results = analyze_numbers(numbers)
+    print("\nAnalysis Results:")
+    print(f"Count: {results['count']}")
+    print(f"Min: {results['min']}")
+    print(f"Max: {results['max']}")
+    print(f"Sum: {results['sum']}")
+    print(f"Average: {results['average']}")
 
 if __name__ == "__main__":
     main()
