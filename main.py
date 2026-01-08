@@ -19,15 +19,27 @@ def analyze_numbers(numbers):
 
 
 def main():
-    # Ask the user how many numbers to enter
     while True:
-        try:
+        # show menu options
+        print("\nMenu:")
+        print("1) Enter numbers and analyze")
+        print("2) Exit the program")
+        choice = input("Choose an option(1 or 2): ").strip()
+        if choice == '2':
+            print("Exiting the program. Goodbye!")
+            break
+        elif choice != '1':
+            print("Invalid choice. Please select 1 or 2.")
+            continue
+         # Ask the user how many numbers to enter
+        while True:
+          try:
             num_count = int(input("How many numbers would you like to enter? "))
             if num_count < 0:
                 print("Please enter a non-negative number.")
                 continue
             break
-        except ValueError:
+          except ValueError:
             print("Invalid input. Please enter a valid integer.")
     
     numbers = []
@@ -56,6 +68,7 @@ def main():
     print(f"Max: {results['max']}")
     print(f"Sum: {results['sum']}")
     print(f"Average: {results['average']}")
-
+        
+      
 if __name__ == "__main__":
     main()
