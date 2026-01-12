@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+</head>
+<body>
+    <h1>Number Analyzer</h1>
+
+    <p>Enter numbers separated by commas (example: 1, 2, 3)</p>
+    <form method="POST" action="/analyze">
+        <input type="text" name="numbers"placeholder="Enter numbers here">
+        <br><br>
+
+        <button type="submit">Analyze</button>
+        <button type="reset">Clear</button>
+    </form>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+</body>
+</html>

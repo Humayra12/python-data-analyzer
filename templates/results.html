@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+</head>
+<body>
+    <h1>Analysis Results</h1>
+    <ul>
+        <li>Count: {{ results.count }}</li>
+        <li>Min: {{ results.min }}</li>
+        <li>Max: {{ results.max }}</li>
+        <li>Sum: {{ results.sum }}</li>
+        <li>Average: {{ results.average }}</li>
+    </ul>
+    <a href="/">Go Back</a>
+
+</body>
+</html>
+
+    
