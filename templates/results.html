@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Result</title>
+    <title>Analysis Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 
 </head>
 <body>
+<div class="container">
     <h1>Analysis Results</h1>
-    <ul>
-        <li>Count: {{ results.count }}</li>
-        <li>Min: {{ results.min }}</li>
-        <li>Max: {{ results.max }}</li>
-        <li>Sum: {{ results.sum }}</li>
-        <li>Average: {{ results.average }}</li>
-    </ul>
-    <a href="/">Go Back</a>
+
+    <div class="results">
+        <p><strong>Count:</strong> {{ results.count }}</p>
+        <p><strong>Sum:</strong> {{ results.sum }}</p>
+        <p><strong>Average:</strong> {{ "%0.2f" % results.average }}</p>
+        <p><strong>Maximum:</strong> {{ results.max }}</p>
+        <p><strong>Minimum:</strong> {{ results.min }}</p>
+    </div>
+    
+    <div class="buttons"> 
+    <a href="/" style="text-decoration:none;">
+        <button type="button">Analyze Another Set</button>
+    </a>
+    </div>
+</div>
 
 </body>
 </html>
