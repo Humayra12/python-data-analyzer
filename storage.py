@@ -12,3 +12,10 @@ def save_numbers(numbers, filename="data.json"):
     with open(filename, "w") as file:
         json.dump(data, file, indent=2)
 
+def load_numbers(filename="data.json"):
+    try:
+        with open(filename, "r") as file:
+            data = json.load(file)
+            return data.get("numbers", [])
+    except FileNotFoundError:
+        return [] #Returnempty list if file does not exist 
