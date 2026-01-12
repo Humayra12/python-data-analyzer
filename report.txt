@@ -1,9 +1,9 @@
 Number Analysis Report
-Generated on: 2026-01-08 20:17:45.268047
+Generated on: 2026-01-11 21:51:38.125985
 
-Numbers: [6.0, 7.0, 3.0]
+Numbers: [-9.0, 5.8, -3.9]
 Count: 3
-Min: 3.0
-Max: 7.0
-Sum: 16.0
-Average: 5.333333333333333
+Min: -9.0
+Max: 5.8
+Sum: -7.1
+Average: -2.3666666666666667

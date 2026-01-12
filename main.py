@@ -1,71 +1,86 @@
-from datetime import datetime
 
-from analyzer import analyze_numbers
+from analyzer import analyze_numbers, print_report
+from storage import save_numbers, load_numbers, save_report 
 
-
-def main():
+def collect_numbers():
+    numbers = []
+    
     while True:
-        # show menu options
-        print("\nMenu:")
-        print("1) Enter numbers and analyze")
-        print("2) Exit the program")
-        choice = input("Choose an option(1 or 2): ").strip()
-        if choice == '2':
-            print("Exiting the program. Goodbye!")
-            break
-        elif choice != '1':
-            print("Invalid choice. Please select 1 or 2.")
-            continue
-         # Ask the user how many numbers to enter
-        while True:
-           try:
-            num_count = int(input("How many numbers would you like to enter? "))
+        try:
+            num_count = int(input("How many numbers do you want to enter? "))
             if num_count < 0:
                 print("Please enter a non-negative number.")
                 continue
             break
-           except ValueError:
+        except ValueError:
             print("Invalid input. Please enter a valid integer.")
-        numbers = []
-    
-    
-    
-        # Loop to collect inputs
-        for i in range(num_count):
-          while True:
+
+    for i in range(num_count):
+        while True:
             try:
-                # Validate each input is a number
-                number = float(input(f"Enter number {i + 1}: "))
-                # Store numbers in a list
+                number = float(input(f"Enter number {i+1}: "))
                 numbers.append(number)
                 break
             except ValueError:
                 print("Invalid input. Please enter a valid number.")
-    
-        # Print the list
-        print("\nYour numbers:", numbers)
 
+    return numbers
 
-        # Analyze the numbers
-        results = analyze_numbers(numbers)
-        print("\nAnalysis Results:")
-        print(f"Count: {results['count']}")
-        print(f"Min: {results['min']}")
-        print(f"Max: {results['max']}")
-        print(f"Sum: {results['sum']}")
-        print(f"Average: {results['average']}")
+def main():
+    numbers = []
+    last_results = None
 
-        # Save report to file
-        with open("report.txt", "w") as file:
-          file.write("Number Analysis Report\n")
-          file.write(f"Generated on: {datetime.now()}\n\n")
-          file.write(f"Numbers: {numbers}\n")
-          file.write(f"Count: {results['count']}\n")
-          file.write(f"Min: {results['min']}\n")
-          file.write(f"Max: {results['max']}\n")
-          file.write(f"Sum: {results['sum']}\n")
-          file.write(f"Average: {results['average']}\n")
-        
+    while True:
+        # show menu options
+        print("\nMenu:")
+        print("1) Enter numbers")
+        print("2) Save numbers to JSON")
+        print("3) Load numbers from JSON")
+        print("4) Analyze current numbers")
+        print("5) Save analysis report to file")
+        print("6) Exit the program")
+
+        choice = input("Choose an option(1-6): ").strip()
+
+        if choice == '1':
+            numbers = collect_numbers()
+            print("Numbers saved in memory.")
+
+        elif choice == '2':
+           if not numbers:
+              print("No numbers in memory to save. Please enter numbers first.")
+           else:
+              save_numbers(numbers)
+              print("Numbers saved to data.json")
+
+        elif choice == '3':
+            numbers = load_numbers()
+            if not numbers:
+                print("No numbers found in data.json.")
+            else:
+                print("Numbers loaded from data.json:", numbers)
+
+        elif choice == '4':
+            if not numbers:
+                print("No numbers in memory to analyze. Please enter or load numbers first.")
+            else:
+                last_results = analyze_numbers(numbers)
+                print_report(last_results)
+
+        elif choice == '5':
+           if last_results is None:
+              print("No analysis results to save. Run option 4 first.")
+           else:
+              save_report(last_results)
+              print("Analysis report saved to report.txt")
+              
+        elif choice == '6':
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+         
       
 if __name__ == "__main__":
     main()

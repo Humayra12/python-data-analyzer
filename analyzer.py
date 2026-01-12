@@ -17,3 +17,11 @@ def analyze_numbers(numbers):
         "sum": sum(numbers),
         "average": sum(numbers) / len(numbers)
     }
+
+def print_report(results):
+    print("\nAnalysis Results:")
+    print(f"Count: {results['count']}")
+    print(f"Min: {results['min']}")
+    print(f"Max: {results['max']}")
+    print(f"Sum: {results['sum']}")
+    print(f"Average: {results['average']}") 
