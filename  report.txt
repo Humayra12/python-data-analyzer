@@ -1,0 +1,8 @@
+Analysis Report
+Generated on: 2026-01-11 22:56:22.314242
+
+Count: 5
+Min: -5.0
+Max: 9.0
+Sum: 16.0
+Average: 3.2
