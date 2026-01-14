@@ -31,6 +31,17 @@
     </style>
 </head>
 <body>
+
+    <h1>Weather Analysis Results</h1>
+
+    <ul>
+        <li><strong>Min Temperature:</strong> {{ analysis.min }}</li>
+        <li><strong>Max Temperature:</strong> {{ analysis.max }}</li>
+        <li><strong>Mean Temperature:</strong> {{ analysis.mean }}</li>
+        <li><strong>Median Temperature:</strong> {{ analysis.median }}</li>
+        <li><strong>Standard Deviation:</strong> {{ analysis.std_dev }}</li>
+    </ul>
+    <a href="/analyze-weather">Back to Weather Analysis</a>
     <div class="container">
         <h1>Weather Analysis Results</h1>
         <table>

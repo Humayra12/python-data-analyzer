@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from weather_analysis import analyze_time_series
 from external_api import fetch_hourly_temperature
-from analysis import analyze_numbers
-
+from analyzer import analyze_numbers
 app = Flask(__name__)
 
 @app.route('/')
@@ -28,6 +27,16 @@ def test_weather():
     times, temperatures = fetch_hourly_temperature(lantitude, longitude)
     analysis = analyze_time_series(times, temperatures)
     return jsonify(analysis)
+
+@app.route("/analyze-weather")
+def analyze_weather():
+    latitude = 40.7128
+    longitude = -74.0060
+    times, temperatures = fetch_hourly_temperature(latitude, longitude)
+    analysis = analyze_time_series(times, temperatures)
+    return render_template('weather_analysis_results.html', analysis=analysis)
+
+    
 
 if __name__ == '__main__':
     app.run(debug=True) 
