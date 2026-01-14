@@ -28,15 +28,21 @@ def test_weather():
     analysis = analyze_time_series(times, temperatures)
     return jsonify(analysis)
 
-@app.route("/analyze-weather")
+@app.route("/analyze-weather", methods=['POST'])
 def analyze_weather():
-    latitude = 40.7128
-    longitude = -74.0060
+    try:
+     latitude = float(request.form.get("latitude"))
+     longitude = float(request.form.get("longitude"))
+    except (TypeError, ValueError):
+        return render_template('weather_input.html', error="Invalid latitude or longitude.")
+    
     times, temperatures = fetch_hourly_temperature(latitude, longitude)
     analysis = analyze_time_series(times, temperatures)
     return render_template('weather_analysis_results.html', analysis=analysis)
 
-    
+@app.route("/weather-input")
+def weather_input():
+    return render_template('weather_input.html')
 
 if __name__ == '__main__':
     app.run(debug=True) 
