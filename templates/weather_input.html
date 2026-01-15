@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="page">
         <div class="card">
             <div class="card-header">
                 <h1>🌤️ Weather Analysis</h1>
@@ -28,7 +28,16 @@
                            placeholder="e.g., -74.0060" 
                            class="form-input" required>
                     <span class="helper-text">Longitude range: -180 to 180</span>
+            
                 </div>
+                <tbody>
+                    {% for entry in weather_data %}
+                    <tr>
+                        <td>{{ entry.time }}</td>
+                        <td>{{ entry.temperature }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
 
                 <button type="submit" class="btn btn-primary">Analyze Weather</button>
             </form>

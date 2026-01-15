@@ -28,7 +28,7 @@ def test_weather():
     analysis = analyze_time_series(times, temperatures)
     return jsonify(analysis)
 
-@app.route("/analyze-weather", methods=['POST'])
+@app.route("/analyze-weather", methods=["GET", "POST"])
 def analyze_weather():
     try:
      latitude = float(request.form.get("latitude"))
@@ -38,11 +38,15 @@ def analyze_weather():
     
     times, temperatures = fetch_hourly_temperature(latitude, longitude)
     analysis = analyze_time_series(times, temperatures)
-    return render_template('weather_analysis_results.html', analysis=analysis)
+    weather_data = []
+    for t, temp in zip(times, temperatures):
+        weather_data.append({"time": t, "temperature": temp})
+    return render_template('weather_analysis_results.html', analysis=analysis, weather_data=weather_data)
 
 @app.route("/weather-input")
 def weather_input():
     return render_template('weather_input.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True) 
